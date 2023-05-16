@@ -40,7 +40,7 @@ def add_all_arguments(parser, train):
     #--- general options ---
     parser.add_argument('--name', "-n", type=str, help='name of the experiment. It decides where to store samples and models')
     parser.add_argument('--seed', type=int, default=42, help='random seed')
-    parser.add_argument('--checkpoints_dir', type=str, default='./checkpoints', help='models are saved here')
+    parser.add_argument('--checkpoints_dir', type=str, default='/content/C-VTON/bpgm/checkpoints', help='models are saved here')
     parser.add_argument('--no_spectral_norm', action='store_true', help='this option deactivates spectral norm in all layers')
     parser.add_argument('--batch_size', type=int, default=1, help='input batch size')
     parser.add_argument('--dataset', type=str, default="mpv", help="Dataset to use.")
@@ -98,7 +98,7 @@ def add_all_arguments(parser, train):
         parser.add_argument('--lambda_labelmix', type=float, default=10.0, help='weight for LabelMix regularization')
         
     else:
-        parser.add_argument('--results_dir', type=str, default='./results/', help='saves testing results here.')
+        parser.add_argument('--results_dir', type=str, default='/content/C-VTON/results', help='saves testing results here.')
         
     return parser
 
@@ -112,7 +112,7 @@ def set_dataset_default_lm(opt, parser):
     elif opt.dataset == "viton":
         parser.set_defaults(num_epochs=100)
         parser.set_defaults(num_res_blocks=int(math.log(opt.img_size, 2)) - 2)
-        parser.set_defaults(dataroot="./data/viton")
+        parser.set_defaults(dataroot="/content/C-VTON/bpgm/data/viton")
         parser.set_defaults(patch_size=opt.img_size // 4)
     else:
         raise NotImplementedError
